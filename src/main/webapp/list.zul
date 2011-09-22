@@ -1,0 +1,16 @@
+<?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" ?>
+<!-- <?variable-resolver class="example.PersonResolver"?> -->
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<vbox>
+  <listbox id="personList" width="800px" rows="5" model="@{personService.persons}" apply="example.PersonCtrl">
+    <listhead>
+      <listheader label="Name"/>
+      <listheader label="Surname"/>
+    </listhead>
+    <listitem self="@{each='person'}">
+      <listcell label="@{person.name}"/>
+      <listcell label="@{person.surname}"/>
+    </listitem>
+  </listbox>
+</vbox>
+

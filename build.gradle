@@ -1,0 +1,69 @@
+apply plugin: 'war'
+apply plugin: 'jetty'
+apply plugin: 'groovy'
+
+sourceCompatibility = 1.6
+compileGroovy.options.fork=true
+//compileJava.options.fork=false
+
+task groovyOp << {
+    compileGroovy.options.each {
+        println "$it"
+        println "\tfork:${it.fork}"
+        it.forkOptions?.properties?.each {
+            println "\t\t$it"
+        }
+    }
+}
+
+def zkVersion = '5.0.7.1'
+def zkDLVersion = '1.1'
+def springVersion = '3.0.6.RELEASE'
+def springSecVer = '3.0.3.RELEASE'
+def hibernateVersion = '3.6.7.Final' // 3.3.2.GA
+def slf4jVersion = '1.6.2'
+
+repositories {
+    mavenCentral()
+    mavenRepo urls: 'http://mavensync.zkoss.org/maven2'
+    mavenRepo urls: 'http://zk-dl.googlecode.com/svn/maven2-repo'
+    // mavenRepo urls: 'https://repository.jboss.org/nexus/content/groups/public-jboss'
+    mavenLocal()
+}
+
+dependencies {
+    // hsql
+    groovy "org.hsqldb:hsqldb:2.2.4"
+    // 'commons' and commons dependencies
+    groovy "commons-dbcp:commons-dbcp:1.4"
+    groovy "org.javassist:javassist:3.15.0-GA"
+    // hibernate
+    groovy "org.hibernate:hibernate-core:$hibernateVersion"
+    //groovy "org.hibernate:hibernate-core:$hibernateVersion"
+    // slf4j
+    groovy "org.slf4j:slf4j-api:$slf4jVersion"
+    groovy "org.slf4j:jcl-over-slf4j:$slf4jVersion"
+    groovy "org.slf4j:slf4j-log4j12:$slf4jVersion"
+    // log4j
+    groovy "log4j:log4j:1.2.16"
+    // spring
+    groovy "org.springframework:spring-context:$springVersion"
+    groovy "org.springframework:spring-web:$springVersion"
+    groovy "org.springframework:spring-orm:$springVersion"
+    groovy "org.springframework:spring-tx:$springVersion"
+    groovy "org.springframework:spring-aop:$springVersion"
+    //groovy "org.springframework.security:spring-security-core:$springSecVer"
+    // zk
+    groovy "org.zkoss.zk:zk:$zkVersion"
+    groovy "org.zkoss.zk:zul:$zkVersion"
+    groovy "org.zkoss.zk:zkplus:$zkVersion"
+    groovy "org.zkoss.zk:zhtml:$zkVersion"
+    groovy "org.zkoss.common:zcommon:$zkVersion"
+    groovy "org.zkoss.common:zweb:$zkVersion"
+    //groovy "org.zkoss.zkforge.el:zcommons-el:$zkVersion"
+    // zk-dl
+    //groovy "cz.datalite.zk-dl:ZKComposer:$zkDLVersion"
+    // groovy (I want to use groovy instead of java)
+    groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '1.8.1'
+}
+
