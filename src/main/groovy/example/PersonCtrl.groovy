@@ -1,14 +1,25 @@
 package example
 
-import org.zkoss.zk.ui.util.GenericForwardComposer
-import org.zkoss.zul.Listbox
 import org.zkoss.zk.ui.Component
+import org.zkoss.zk.ui.event.Event
+import org.zkoss.zk.ui.util.GenericForwardComposer
+import org.zkoss.zul.Label
+import org.zkoss.zul.Listbox
+import org.zkoss.zul.Textbox
+import org.apache.log4j.Logger
 
 class PersonCtrl extends GenericForwardComposer {
 
-    Listbox personList
-
     private static final String KEY_PEOPLE="KEY_PEOPLE_VIEW_CTRL"
+
+    private static Logger logger = Logger.getLogger(PersonCtrl)
+
+    Listbox personList
+    Textbox tbName
+    Textbox tbSurname
+
+    PersonService personService
+    Person person = new Person()
 
     @Override
     void doAfterCompose(Component comp) throws Exception {
@@ -16,16 +27,13 @@ class PersonCtrl extends GenericForwardComposer {
         desktop.setAttribute(KEY_PEOPLE, this);
     }
 
-    private List<Person> persons
-    List<Person> getPersons() {
-        if (!persons) {
-            persons = [
-                new Person(name: "name 1", surname: "surname 1"),
-                new Person(name: "name 2", surname: "surname 2"),
-                new Person(name: "name 3", surname: "surname 3")
-            ]
-        }
-        persons
+    void onClick$btnSavePerson(Event e) {
+        logger.debug "Saving $person"
+    }
+
+    void onClick$btnNewPerson(Event e) {
+        logger.debug "new person"
+        person = new Person()
     }
 
 }

@@ -4,6 +4,8 @@ apply plugin: 'groovy'
 
 sourceCompatibility = 1.6
 compileGroovy.options.fork=true
+stopPort=9876
+stopKey='detente satanas'
 //compileJava.options.fork=false
 
 task groovyOp << {
