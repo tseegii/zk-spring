@@ -11,11 +11,13 @@ SimpleBean simple = SpringUtil.getBean("simpleBean");
 class PersonResolver implements VariableResolver {
 
     def resolveVariable(String name) {
+		println "estoy usando PersonResolver"
         "persons" == name ? getPersons() : null
     }
 
     private List<Person> persons
     List<Person> getPersons() {
+		println "Estoy usando PersonResolver"
         if (!persons) {
             persons = [
                 new Person(name: "name 1", surname: "surname 1"),

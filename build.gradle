@@ -1,6 +1,7 @@
 apply plugin: 'war'
 apply plugin: 'jetty'
 apply plugin: 'groovy'
+apply plugin: 'eclipse'
 
 sourceCompatibility = 1.6
 //compileGroovy.options.fork=true
