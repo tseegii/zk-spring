@@ -3,11 +3,12 @@ apply plugin: 'jetty'
 apply plugin: 'groovy'
 
 sourceCompatibility = 1.6
-compileGroovy.options.fork=true
+//compileGroovy.options.fork=true
 stopPort=9876
 stopKey='detente satanas'
 //compileJava.options.fork=false
 
+/*
 task groovyOp << {
     compileGroovy.options.each {
         println "$it"
@@ -17,6 +18,7 @@ task groovyOp << {
         }
     }
 }
+*/
 
 def zkVersion = '5.0.7.1'
 def zkDLVersion = '1.1'
@@ -26,11 +28,17 @@ def hibernateVersion = '3.6.7.Final' // 3.3.2.GA
 def slf4jVersion = '1.6.2'
 
 repositories {
-    mavenCentral()
-    mavenRepo urls: 'http://mavensync.zkoss.org/maven2'
-    mavenRepo urls: 'http://zk-dl.googlecode.com/svn/maven2-repo'
-    // mavenRepo urls: 'https://repository.jboss.org/nexus/content/groups/public-jboss'
     mavenLocal()
+    mavenCentral()
+    maven {
+        url "http://mavensync.zkoss.org/maven2"
+        url "http://zk-dl.googlecode.com/svn/maven2-repo"
+        url "https://repository.jboss.org/nexus/content/groups/public-jboss"
+    }
+    // mavenRepo urls: 'http://mavensync.zkoss.org/maven2'
+    // mavenRepo urls: 'http://zk-dl.googlecode.com/svn/maven2-repo'
+    // mavenRepo urls: 'https://repository.jboss.org/nexus/content/groups/public-jboss'
+
 }
 
 dependencies {
