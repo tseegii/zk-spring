@@ -12,4 +12,10 @@ class PersonDaoImp extends HibernateDaoSupport implements PersonDao {
 	Person save(Person person) {
 		hibernateTemplate.saveOrUpdate(person)
 	}
+
+	@Override
+	void delete(Person person) {
+		hibernateTemplate.delete(person)
+	}
+
 }

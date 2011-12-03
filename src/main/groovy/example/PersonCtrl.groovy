@@ -29,17 +29,26 @@ class PersonCtrl extends GenericForwardComposer {
 
     void onClick$btnSavePerson(Event e) {
         logger.debug "Saving $person"
-		person = personService.save(person)
+		personService.save(person)
+		resetForm()
     }
 
     void onClick$btnNewPerson(Event e) {
         logger.debug "new person"
-        person = new Person()
+		resetForm()
     }
 
 	void onClick$btnDeletePerson(Event e) {
 		logger.debug "Deleting $person"
+		personService.delete(person)
+		resetForm()
+	}
+
+	void resetForm() {
 		person = new Person()
+		tbName.text = null
+		tbSurname.text = null
+		tbName.focus()
 	}
 
 }
