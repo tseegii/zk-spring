@@ -4,22 +4,10 @@ apply plugin: 'groovy'
 apply plugin: 'eclipse'
 
 sourceCompatibility = 1.6
-//compileGroovy.options.fork=true
 stopPort=9876
 stopKey='detente satanas'
+//compileGroovy.options.fork=true
 //compileJava.options.fork=false
-
-/*
-task groovyOp << {
-    compileGroovy.options.each {
-        println "$it"
-        println "\tfork:${it.fork}"
-        it.forkOptions?.properties?.each {
-            println "\t\t$it"
-        }
-    }
-}
-*/
 
 def zkVersion = '5.0.7.1'
 def zkDLVersion = '1.1'
@@ -37,9 +25,6 @@ repositories {
         url "http://zk-dl.googlecode.com/svn/maven2-repo"
         url "https://repository.jboss.org/nexus/content/groups/public-jboss"
     }
-    // mavenRepo urls: 'http://mavensync.zkoss.org/maven2'
-    // mavenRepo urls: 'http://zk-dl.googlecode.com/svn/maven2-repo'
-    // mavenRepo urls: 'https://repository.jboss.org/nexus/content/groups/public-jboss'
 
 }
 
@@ -83,19 +68,8 @@ dependencies {
     groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '1.8.1'
 
     // CXF
-    groovy ("org.apache.cxf:cxf-rt-frontend-jaxws:$cxfVersion")/* {
-      excludes 'spring-web'
-    }*/
-    groovy ("org.apache.cxf:cxf-rt-frontend-jaxrs:$cxfVersion")/* {
-      excludes 'xmlbeans', 'spring-web', 'spring-core'
-    }*/
-    /*
-    compile('org.apache.cxf:cxf-rt-frontend-jaxws:2.3.0'){
-      excludes 'spring-web'
-    }
-    compile('org.apache.cxf:cxf-rt-frontend-jaxrs:2.3.0'){
-      excludes 'xmlbeans', 'spring-web', 'spring-core'
-    }
-    */
+    groovy ("org.apache.cxf:cxf-rt-frontend-jaxws:$cxfVersion")
+    groovy "org.apache.cxf:cxf-rt-transports-http:$cxfVersion"
+    // runtime "wsdl4j:wsdl4j:1.6.2" // poner a mano wsdl4j.jar en src/main/WEB-INF/lib
 }
 
