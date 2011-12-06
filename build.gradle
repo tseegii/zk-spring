@@ -27,6 +27,7 @@ def springVersion = '3.0.6.RELEASE'
 def springSecVer = '3.0.3.RELEASE'
 def hibernateVersion = '3.6.7.Final' // 3.3.2.GA
 def slf4jVersion = '1.6.2'
+def cxfVersion = '2.5.0'
 
 repositories {
     mavenLocal()
@@ -45,18 +46,22 @@ repositories {
 dependencies {
     // hsql
     groovy "org.hsqldb:hsqldb:2.2.4"
+
     // 'commons' and commons dependencies
     groovy "commons-dbcp:commons-dbcp:1.4"
     groovy "org.javassist:javassist:3.15.0-GA"
+
     // hibernate
     groovy "org.hibernate:hibernate-core:$hibernateVersion"
-    //groovy "org.hibernate:hibernate-core:$hibernateVersion"
+
     // slf4j
     groovy "org.slf4j:slf4j-api:$slf4jVersion"
     groovy "org.slf4j:jcl-over-slf4j:$slf4jVersion"
     groovy "org.slf4j:slf4j-log4j12:$slf4jVersion"
+
     // log4j
     groovy "log4j:log4j:1.2.16"
+
     // spring
     groovy "org.springframework:spring-context:$springVersion"
     groovy "org.springframework:spring-web:$springVersion"
@@ -64,6 +69,7 @@ dependencies {
     groovy "org.springframework:spring-tx:$springVersion"
     groovy "org.springframework:spring-aop:$springVersion"
     //groovy "org.springframework.security:spring-security-core:$springSecVer"
+
     // zk
     groovy "org.zkoss.zk:zk:$zkVersion"
     groovy "org.zkoss.zk:zul:$zkVersion"
@@ -72,9 +78,24 @@ dependencies {
     groovy "org.zkoss.common:zcommon:$zkVersion"
     groovy "org.zkoss.common:zweb:$zkVersion"
     //groovy "org.zkoss.zkforge.el:zcommons-el:$zkVersion"
-    // zk-dl
-    //groovy "cz.datalite.zk-dl:ZKComposer:$zkDLVersion"
+
     // groovy (I want to use groovy instead of java)
     groovy group: 'org.codehaus.groovy', name: 'groovy-all', version: '1.8.1'
+
+    // CXF
+    groovy ("org.apache.cxf:cxf-rt-frontend-jaxws:$cxfVersion")/* {
+      excludes 'spring-web'
+    }*/
+    groovy ("org.apache.cxf:cxf-rt-frontend-jaxrs:$cxfVersion")/* {
+      excludes 'xmlbeans', 'spring-web', 'spring-core'
+    }*/
+    /*
+    compile('org.apache.cxf:cxf-rt-frontend-jaxws:2.3.0'){
+      excludes 'spring-web'
+    }
+    compile('org.apache.cxf:cxf-rt-frontend-jaxrs:2.3.0'){
+      excludes 'xmlbeans', 'spring-web', 'spring-core'
+    }
+    */
 }
 
