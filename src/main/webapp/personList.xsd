@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://www.frunix.org/schemas/personList" elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.frunix.org/schemas/personList">
+
+    <element name="personListResponse" type="tns:PersonListResponse"></element>
+    
+    <complexType name="PersonListResponse">
+    	<sequence>
+    		<element name="persons">
+    			<complexType>
+    				<sequence>
+    					<element name="person" type="tns:Person"
+    						maxOccurs="unbounded" minOccurs="0">
+    					</element>
+    				</sequence>
+    			</complexType>
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="Person">
+    	<sequence>
+    		<element name="name" type="string"></element>
+    		<element name="surname" type="string"></element>
+    	</sequence>
+    	<attribute name="id" type="integer"></attribute>
+    </complexType>
+</schema>

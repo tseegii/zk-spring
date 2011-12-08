@@ -54,5 +54,12 @@
     <bean id="personService" class="example.PersonServiceImp">
         <property name="personDao" ref="personDao" />
     </bean>
-    <jaxws:endpoint id="helloService" implementor="hello.HelloServiceImp" address="/hello"/>
+<!--     <jaxws:endpoint id="helloService" implementor="hello.HelloServiceImp" address="/hello"/> -->
+    <jaxws:endpoint id="personServiceEndpoint" address="/person">
+    	<jaxws:implementor>
+		    <bean id="personWSService" class="example.PersonWSService">
+		    	<property name="personService" ref="personService"/>
+		    </bean>
+    	</jaxws:implementor>
+    </jaxws:endpoint>
 </beans>

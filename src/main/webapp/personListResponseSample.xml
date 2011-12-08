@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<personListResponse
+		xmlns="http://www.frunix.org/schemas/personListResponse"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+			http://www.frunix.org/schemas/personListResponse personListResponse.xsd ">
+	<persons>
+		<person id="123">
+			<name>a name</name>
+			<surname>a surname</surname>
+		</person>
+	</persons>
+</personListResponse>
